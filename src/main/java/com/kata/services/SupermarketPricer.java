@@ -1,6 +1,8 @@
 package com.kata.services;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kata.models.Basket;
 import com.kata.models.CountableItem;
@@ -11,6 +13,15 @@ import com.kata.utils.Converter;
 import static java.math.BigDecimal.ZERO;
 
 public class SupermarketPricer {
+	private List<Promotion> promotions = new ArrayList<>();
+	
+	public SupermarketPricer() {
+    }
+	
+	public SupermarketPricer(List<Promotion> promotions) {
+        this.promotions = promotions;
+    }
+	
 	public BigDecimal getDefaultTotalPrice(Basket basket) {
 		BigDecimal total = ZERO;
 		CountableItem countableItem;
@@ -31,4 +42,8 @@ public class SupermarketPricer {
         }
         return total;
     }
+	
+	public BigDecimal getTotalPriceAfterPromotions(Basket basket) {
+		return getDefaultTotalPrice(basket);
+	}
 }

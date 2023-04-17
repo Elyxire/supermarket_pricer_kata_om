@@ -44,6 +44,11 @@ public class SupermarketPricer {
     }
 	
 	public BigDecimal getTotalPriceAfterPromotions(Basket basket) {
-		return getDefaultTotalPrice(basket);
+		BigDecimal total = getDefaultTotalPrice(basket);
+		for (Promotion promotion : promotions) {
+            BigDecimal discount = promotion.calculateDiscount(basket);
+            total = total.subtract(discount);
+        }
+		return total;
 	}
 }

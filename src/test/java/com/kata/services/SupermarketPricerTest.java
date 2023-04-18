@@ -75,4 +75,20 @@ public class SupermarketPricerTest {
         BigDecimal actualTotal = pricer.getTotalPriceAfterPromotions(basket);
         assertEquals(expectedTotal.stripTrailingZeros(), actualTotal.stripTrailingZeros());
 	}
+	
+	@Test
+	public void testGetTotalPriceAfterPromotions_caseBuyTwoGetOneFreePromotion() {
+		Basket basket = new Basket();
+        basket.addItem(new Item("Bean can", new BigDecimal("3.1")));
+        basket.addItem(new CountableItem("Water bottle", new BigDecimal("2.0"), 4L));
+        basket.addItem(new CountableItem("Chips", new BigDecimal("0.5"), 3L));
+        List<String> names = Arrays.asList("Water bottle");
+        Set<String> eligibleItemNames = new HashSet<>(names);
+
+        List<Promotion> promotions = Arrays.asList(new BuyTwoGetOneFreePromotion(eligibleItemNames));
+        SupermarketPricer pricer = new SupermarketPricer(promotions);
+        BigDecimal expectedTotal = new BigDecimal("10.6");
+        BigDecimal actualTotal = pricer.getTotalPriceAfterPromotions(basket);
+        assertEquals(expectedTotal.stripTrailingZeros(), actualTotal.stripTrailingZeros());
+	}
 }

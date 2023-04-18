@@ -2,6 +2,13 @@ package com.kata.models;
 
 import java.math.BigDecimal;
 
+/**
+ * This class is the description of an Item from the supermarket
+ * 
+ * @author Othman
+ *
+ */
+
 public class Item {
 	private String name;
     private BigDecimal price;

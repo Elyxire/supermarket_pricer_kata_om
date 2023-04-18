@@ -12,6 +12,13 @@ import com.kata.utils.Converter;
 
 import static java.math.BigDecimal.ZERO;
 
+/**
+ * SupermarketPricer is a class used for pricing a basket of items
+ * 
+ * @author Othman
+ *
+ */
+
 public class SupermarketPricer {
 	private List<Promotion> promotions = new ArrayList<>();
 	
@@ -22,6 +29,12 @@ public class SupermarketPricer {
         this.promotions = promotions;
     }
 	
+	/**
+	 * This method calculates the standard total price of a basket of goods before applying the promotions
+	 * 
+	 * @param basket
+	 * @return total price amount of the basket
+	 */
 	public BigDecimal getDefaultTotalPrice(Basket basket) {
 		BigDecimal total = ZERO;
 		CountableItem countableItem;
@@ -43,6 +56,12 @@ public class SupermarketPricer {
         return total;
     }
 	
+	/**
+	 * This method calculates the final total price of a basket of goods (after applying the promotions)
+	 * 
+	 * @param basket
+	 * @return final total price of the basket
+	 */
 	public BigDecimal getTotalPriceAfterPromotions(Basket basket) {
 		BigDecimal total = getDefaultTotalPrice(basket);
 		for (Promotion promotion : promotions) {

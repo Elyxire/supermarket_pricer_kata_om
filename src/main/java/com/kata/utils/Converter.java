@@ -2,12 +2,27 @@ package com.kata.utils;
 
 import com.kata.enums.UnitEnum;
 
+/**
+ * Converter is a utility class used for converting quantities for uncountable items from a unit to another unit
+ * 
+ * @author Othman
+ *
+ */
+
 public class Converter {
 	
 	private Converter() {
 		throw new IllegalStateException("Utility class");
 	}
 	
+	/**
+	 * This method converts quantity from boughtUnit to standardUnit
+	 * 
+	 * @param quantity
+	 * @param boughtUnit
+	 * @param standardUnit
+	 * @return quantity in standardUnit
+	 */
 	public static double convertToStandardUnit(double quantity, UnitEnum boughtUnit, UnitEnum standardUnit) {
         if (boughtUnit == standardUnit) {
             return quantity;

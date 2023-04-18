@@ -7,6 +7,15 @@ import com.kata.models.Basket;
 import com.kata.models.CountableItem;
 import com.kata.models.Item;
 
+/**
+ * This class is an implementation of the interface {@link Promotion} 
+ * This promotion specifies the calculation of the discount amount 
+ * for Three For One Dollar promotion
+ * 
+ * @author Othman
+ *
+ */
+
 public class ThreeForOneDollarPromotion implements Promotion {
 	private static final BigDecimal PROMOTION_PRICE = new BigDecimal("1.00");
     private static final int ITEMS_PER_PROMOTION = 3;

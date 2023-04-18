@@ -45,7 +45,7 @@ public class SupermarketPricerTest {
     }
 	
 	@Test
-	public void testGetTotalPriceAfterPromotions() {
+	public void testGetTotalPriceAfterPromotions_caseThreeForOneDollar() {
 		Basket basket = new Basket();
         basket.addItem(new Item("Bean can", new BigDecimal("3.55")));
         basket.addItem(new CountableItem("Water bottle - small",  new BigDecimal("0.4"), 5L));
@@ -57,6 +57,22 @@ public class SupermarketPricerTest {
         SupermarketPricer pricer = new SupermarketPricer(promotions);
         BigDecimal expectedTotal = new BigDecimal("6.35");
         BigDecimal actualTotal = pricer.getTotalPriceAfterPromotions(basket);
-        assertEquals(expectedTotal, actualTotal);
+        assertEquals(expectedTotal.stripTrailingZeros(), actualTotal.stripTrailingZeros());
+	}
+	
+	@Test
+	public void testGetTotalPriceAfterPromotions_caseTwoPoundsForOneDollar() {
+		Basket basket = new Basket();
+        basket.addItem(new Item("Bean can", new BigDecimal("3.1")));
+        basket.addItem(new UncountableItem("Pasta", new BigDecimal("0.56"), UnitEnum.POUND, UnitEnum.POUND, 2.5));
+        basket.addItem(new UncountableItem("Rice", new BigDecimal("0.65"), UnitEnum.POUND, UnitEnum.OUNCE, 32));
+        List<String> names = Arrays.asList("Pasta", "Rice");
+        Set<String> eligibleItemNames = new HashSet<>(names);
+
+        List<Promotion> promotions = Arrays.asList(new TwoPoundsForOneDollarPromotion(eligibleItemNames));
+        SupermarketPricer pricer = new SupermarketPricer(promotions);
+        BigDecimal expectedTotal = new BigDecimal("5.38");
+        BigDecimal actualTotal = pricer.getTotalPriceAfterPromotions(basket);
+        assertEquals(expectedTotal.stripTrailingZeros(), actualTotal.stripTrailingZeros());
 	}
 }

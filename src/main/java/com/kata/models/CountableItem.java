@@ -2,6 +2,13 @@ package com.kata.models;
 
 import java.math.BigDecimal;
 
+/**
+ * This class represents the items that are countable and inherits from the class {@link Item}
+ * 
+ * @author Othman
+ *
+ */
+
 public class CountableItem extends Item{
 	private long quantity;
     

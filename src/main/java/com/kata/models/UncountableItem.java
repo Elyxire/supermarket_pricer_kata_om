@@ -4,6 +4,14 @@ import java.math.BigDecimal;
 
 import com.kata.enums.UnitEnum;
 
+/**
+ * This class represents the items that are uncountable (quantity measured by weight or volum ...) 
+ * and inherits from the class {@link Item}
+ * 
+ * @author Othman
+ *
+ */
+
 public class UncountableItem extends Item{
 	private UnitEnum standardUnit;		//unit used for pricing
 	private UnitEnum boughtUnit;		//unit used when buying the item

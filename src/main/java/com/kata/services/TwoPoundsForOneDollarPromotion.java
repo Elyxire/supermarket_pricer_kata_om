@@ -9,6 +9,15 @@ import com.kata.models.Item;
 import com.kata.models.UncountableItem;
 import com.kata.utils.Converter;
 
+/**
+ * This class is an implementation of the interface {@link Promotion} 
+ * This promotion specifies the calculation of the discount amount 
+ * for Two Pounds For One Dollar promotion
+ * 
+ * @author Othman
+ *
+ */
+
 public class TwoPoundsForOneDollarPromotion implements Promotion {
 	private static final BigDecimal PROMOTION_PRICE = new BigDecimal("1.00");
     private static final int UNIT_COUNT_PER_PROMOTION = 2;

@@ -7,6 +7,15 @@ import com.kata.models.Basket;
 import com.kata.models.CountableItem;
 import com.kata.models.Item;
 
+/**
+ * This class is an implementation of the interface {@link Promotion} 
+ * This promotion specifies the calculation of the discount amount 
+ * for Buy Two Get One Free promotion
+ * 
+ * @author Othman
+ *
+ */
+
 public class BuyTwoGetOneFreePromotion implements Promotion {
     private static final int ITEMS_PER_PROMOTION = 3;
     

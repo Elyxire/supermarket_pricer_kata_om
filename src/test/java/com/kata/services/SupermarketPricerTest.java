@@ -3,6 +3,7 @@ package com.kata.services;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ import com.kata.models.Basket;
 import com.kata.models.CountableItem;
 import com.kata.models.Item;
 import com.kata.models.UncountableItem;
+import com.kata.utils.CsvUtils;
 
 public class SupermarketPricerTest {
 	@Test
@@ -90,5 +92,16 @@ public class SupermarketPricerTest {
         BigDecimal expectedTotal = new BigDecimal("10.6");
         BigDecimal actualTotal = pricer.getTotalPriceAfterPromotions(basket);
         assertEquals(expectedTotal.stripTrailingZeros(), actualTotal.stripTrailingZeros());
+	}
+	
+	@Test
+	public void testGetDefaultTotalPriceUsingConverter_caseReadingPricesFromCsvFile() throws IOException {
+		List<Item> items = CsvUtils.readDataFromCsvFile("prices.csv", Item.class);
+		Basket basket = new Basket();
+		basket.setItems(items);
+		SupermarketPricer pricer = new SupermarketPricer();
+        BigDecimal totalPrice = pricer.getDefaultTotalPrice(basket);
+
+        assertEquals(new BigDecimal("5.55"), totalPrice);
 	}
 }
